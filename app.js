@@ -1,10 +1,9 @@
-var http = require('http');
-var server = http.createServer();
+var express = require('express');
+var app = express();
 
-server.on('request',function(req,res){
-  res.writeHead(200,{'Content-Type':'text/plain'});
-  res.write('Hello World');
-  res.end();
+app.get('/',function(req,res){
+
+  res.send('Hello World');
 });
 
-server.listen(process.env.PORT,process.env.IP);
+var server = app.listen(process.env.PORT,process.env.IP);
