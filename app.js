@@ -18,8 +18,8 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
-  var userId = req.body.userid;
+  res.send(req.body);
 });
 
-var server = app.listen(3000);
-//var server = app.listen(process.env.PORT,process.env.IP);
+//var server = app.listen(3000);
+var server = app.listen(process.env.PORT,process.env.IP);

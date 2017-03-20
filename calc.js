@@ -57,11 +57,14 @@ function calc_affinity(candidate,userId,db){
         recommends.push({name:service.name,val:score});
       }
     }
+
     recommends.sort(function(a,b){
       return b.val - a.val;
     });
 
     console.log(recommends);
+    
+
 
   });
 }
