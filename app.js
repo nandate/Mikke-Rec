@@ -13,8 +13,6 @@ var db = firebase.database();
 
 app.get('/',function(req,res){
   res.send('hello world');
-  var userId = "h5wqfn6SH9aIka7o2Bz0brS9nAD2";
-  calc.first_recommend(userId,db);
 });
 
 app.post('/',function(req,res){
