@@ -37,6 +37,7 @@ function calc_affinity(candidate,userId,db){
   var tags_point;
   var tag = {};
   var recommends = [];
+  var result = [];
   user_ref.child("tags_point").on("value",function(snapshot){
     tags_point = snapshot.val();
     for(var key in tags_point){
@@ -45,7 +46,7 @@ function calc_affinity(candidate,userId,db){
       }
     }
     for(var key in candidate){
-      var service=candidate[key];
+      var service = candidate[key];
       var service_tag = service.tags;
       var score = 0;
       for(var tag_name in tag){
@@ -54,7 +55,7 @@ function calc_affinity(candidate,userId,db){
         }
       }
       if(score !=0){
-        recommends.push({name:service.name,val:score});
+        recommends.push({name:service.name,val:score,data:service});
       }
     }
 
@@ -62,14 +63,21 @@ function calc_affinity(candidate,userId,db){
       return b.val - a.val;
     });
 
-    console.log(recommends);
-    
+    if(recommends.length>3){
+      for(var i=0;i<3;i++){
+        result.push(recommends[i].data);
+      }
+    }else{
+      for(var i=0;i<recommends.length;i++){
+        result.push(recommends[i].data);
+      }
+    }
 
+    user_ref.child("recommends").set(result);
+    user_ref.child("used_services").set(result);
 
   });
 }
-
-
 
 
 
