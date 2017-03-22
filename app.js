@@ -16,6 +16,7 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
+  db.set(req);
   res.send(req.body);
 });
 
