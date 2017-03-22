@@ -16,7 +16,7 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
-  res.send(req.body);
+  res.send(req);
 });
 
 //var server = app.listen(3000);
