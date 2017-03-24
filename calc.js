@@ -8,25 +8,20 @@ function first_recommend(userId,db){
     selected_genres = snapshot.val();
     services = [];
     candidate = [];
-    genres_ref.on("value",function(snapshot){
-      var genres = snapshot.val();
-      for(var key in genres){
-        var genre = genres[key];
-        if(selected_genres.indexOf(genre.name)>=0){
-          services.push.apply(services,genre.services);
+
+    for(var key in selected_genres){
+      services.push.apply(services,selected_genres[key].services);
+    }
+    console.log(services);
+    services_ref.on("value",function(snapshot){
+      var val = snapshot.val();
+      for(var key in val){
+        var service = val[key];
+        if(services.indexOf(service.name)>=0){
+          candidate.push(service);
         }
       }
-      services_ref.on("value",function(snapshot){
-        var val = snapshot.val();
-        for(var key in val){
-          var service = val[key];
-          if(services.indexOf(service.name)>=0){
-            candidate.push(service);
-          }
-        }
-        calc_affinity(candidate,userId,db);
-
-      });
+      calc_affinity(candidate,userId,db);
     });
   });
 }
@@ -72,10 +67,10 @@ function calc_affinity(candidate,userId,db){
         result.push(recommends[i].data);
       }
     }
-
+    console.log(recommends);
+    console.log(result);
     user_ref.child("recommends").set(result);
     user_ref.child("used_services").set(result);
-
   });
 }
 

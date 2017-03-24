@@ -9,8 +9,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 firebase.initializeApp({
-  serviceAccount: './fire-test-6ce685d5b105.json',
-  databaseURL: 'https://fire-test-4a04c.firebaseio.com/'
+  serviceAccount: './Mikke-87878efbcf62.json',
+  databaseURL: 'https://mikke-d5d0a.firebaseio.com/'
 });
 
 var db = firebase.database();
@@ -21,7 +21,8 @@ app.get('/',function(req,res){
 
 app.post('/',function(req,res){
   var userid = req.body.UserID;
-  res.json({notes:userid});
+  calc.first_recommend(userid,db);
+  res.json(req.body);
 });
 
 //var server = app.listen(3000);
