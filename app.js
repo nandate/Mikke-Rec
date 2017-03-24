@@ -22,7 +22,7 @@ app.get('/',function(req,res){
 app.post('/',function(req,res){
   var POST = JSON.parse(req.body);
   var userid = POST.UserID;
-  res.json({notes:userid});
+  res.json(req.body);
 });
 
 //var server = app.listen(3000);
