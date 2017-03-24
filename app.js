@@ -1,8 +1,12 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var firebase = require('firebase');
 var calc = require('./calc.js');
 
+
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
 firebase.initializeApp({
   serviceAccount: './fire-test-6ce685d5b105.json',
@@ -16,7 +20,10 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
-  res.send(req);
+  var POST = JSON.parse(req.body);
+  var userid = POST.UserID;
+
+  res.send(userid);
 });
 
 //var server = app.listen(3000);
