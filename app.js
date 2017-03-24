@@ -22,8 +22,7 @@ app.get('/',function(req,res){
 app.post('/',function(req,res){
   var POST = JSON.parse(req.body);
   var userid = POST.UserID;
-
-  res.send(userid);
+  res.json({notes:userid});
 });
 
 //var server = app.listen(3000);
