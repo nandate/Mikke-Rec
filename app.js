@@ -20,7 +20,8 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
-  res.json(req.body);
+  var userid = req.body.UserID;
+  res.json({notes:userid});
 });
 
 //var server = app.listen(3000);
