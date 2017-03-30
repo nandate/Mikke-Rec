@@ -12,7 +12,11 @@ function first_recommend(userId,db){
     for(var key in selected_genres){
       services.push.apply(services,selected_genres[key].services);
     }
-    console.log(services);
+
+    services = services.filter(function(x,i,self){
+      return self.indexOf(x) === i;
+    });
+
     services_ref.on("value",function(snapshot){
       var val = snapshot.val();
       for(var key in val){
@@ -67,10 +71,9 @@ function calc_affinity(candidate,userId,db){
         result.push(recommends[i].data);
       }
     }
-    console.log(recommends);
-    console.log(result);
     user_ref.child("recommends").set(result);
     user_ref.child("used_services").set(result);
+
   });
 }
 

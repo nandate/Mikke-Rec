@@ -16,6 +16,7 @@ firebase.initializeApp({
 var db = firebase.database();
 
 app.get('/',function(req,res){
+  calc.first_recommend("lktFuJHhiZbtnYaJeVimoGf3uXq2",db);
   res.send('hello world');
 });
 
@@ -25,5 +26,5 @@ app.post('/',function(req,res){
   res.json(req.body);
 });
 
-//var server = app.listen(3000);
-app.listen(process.env.PORT,process.env.IP);
+var server = app.listen(3000);
+//app.listen(process.env.PORT,process.env.IP);
